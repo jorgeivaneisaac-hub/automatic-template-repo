@@ -1,0 +1,61 @@
+name: CI PowerShell
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  validate-and-test:
+    name: Validar y Analizar PowerShell
+    runs-on: windows-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar PowerShell
+        shell: pwsh
+        run: |
+          Write-Host "Versión de PowerShell:"
+          $PSVersionTable.PSVersion
+
+      - name: Instalar PSScriptAnalyzer (Linter)
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+          Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
+
+      - name: Ejecutar Análisis de Código (PSScriptAnalyzer)
+        shell: pwsh
+        run: |
+          # Analiza todos los scripts .ps1 del repositorio buscando malas prácticas
+          $results = Invoke-ScriptAnalyzer -Path . -Recurse -Severity Warning, Error
+
+          if ($results) {
+              Write-Host "Se encontraron advertencias o errores de análisis:" -ForegroundColor Yellow
+              $results | Format-Table
+              # Opcional: Fallar el CI si hay errores críticos
+              $errors = $results | Where-Object { $_.Severity -eq 'Error' }
+              if ($errors) {
+                  Write-Error "El análisis estático encontró errores críticos."
+                  exit 1
+              }
+          } else {
+              Write-Host "¡Análisis estático completado sin errores!" -ForegroundColor Green
+          }
+
+      - name: Prueba de Sintaxis General
+        shell: pwsh
+        run: |
+          # Verifica que todos los archivos .ps1 compilen/parseen correctamente sin errores de sintaxis
+          Get-ChildItem -Path . -Recurse -Filter *.ps1 | ForEach-Object {
+              Write-Host "Verificando sintaxis de: $($_.FullName)"
+              $null = [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$null, [ref]$errors)
+              if ($errors) {
+                  Write-Error "Error de sintaxis en $($_.Name): $errors"
+                  exit 1
+              }
+          }
+          Write-Host "¡Todos los scripts tienen una sintaxis válida!" -ForegroundColor Green

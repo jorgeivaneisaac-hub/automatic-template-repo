@@ -1,0 +1,6 @@
+test:cpp:
+  stage: test
+  image: gcc:latest
+  script:
+    - echo "Compilando proyecto C/C++..."
+    - cmake -B build && cmake --build build

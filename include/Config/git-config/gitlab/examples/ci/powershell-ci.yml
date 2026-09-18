@@ -1,0 +1,5 @@
+test:powershell:
+  stage: test
+  image: mcr.microsoft.com/powershell:ubuntu-latest
+  script:
+    - pwsh -Command "Invoke-ScriptAnalyzer -Path . -Recurse -Severity Error"

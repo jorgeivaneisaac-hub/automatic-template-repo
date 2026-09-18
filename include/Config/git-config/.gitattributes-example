@@ -1,0 +1,67 @@
+# ==============================================================================
+# CONFIGURACIÓN GLOBAL POR DEFECTO
+# ==============================================================================
+# Por defecto, trata todos los archivos como texto y fuerza los saltos de línea
+# a LF (estándar de Linux/Unix), previniendo conflictos por CRLF de Windows.
+* text=auto eol=lf
+
+
+# ==============================================================================
+# ARCHIVOS DE CÓDIGO Y TEXTO (Forzar LF explícitamente)
+# ==============================================================================
+*.ps1           text eol=lf
+*.psm1          text eol=lf
+*.psd1          text eol=lf
+*.vbs           text eol=lf
+*.js            text eol=lf
+*.rs            text eol=lf
+*.py            text eol=lf
+*.json          text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+*.md            text eol=lf
+*.txt           text eol=lf
+Makefile        text eol=lf
+Dockerfile      text eol=lf
+
+
+# ==============================================================================
+# ARCHIVOS DE CONFIGURACIÓN DEL SISTEMA (Mantener CRLF si es estrictamente necesario)
+# ==============================================================================
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+
+
+# ==============================================================================
+# ARCHIVOS BINARIOS Y MULTIMEDIA (Evitar corrupción por diffs de Git)
+# ==============================================================================
+*.exe           binary
+*.dll           binary
+*.bin           binary
+*.iso           binary
+*.img           binary
+
+# Imágenes y gráficos
+*.png           binary
+*.jpg           binary
+*.jpeg          binary
+*.gif           binary
+*.ico           binary
+*.svg           text diff=xml
+*.pdf           binary
+
+# Archivos comprimidos y de dependencias empaquetadas
+*.zip           binary
+*.tar           binary
+*.gz            binary
+*.rar           binary
+*.7z            binary
+*.lock          text
+
+
+# ==============================================================================
+# CONFIGURACIÓN DE DIFFS Y MERGES PERSONALIZADOS
+# ==============================================================================
+# Permite que los archivos Markdown y JSON muestren diffs más limpios
+*.md            diff=markdown
+*.json          diff=json

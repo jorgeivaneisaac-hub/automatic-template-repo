@@ -1,0 +1,52 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "PowerShell: Ejecutar Script Principal",
+      "command": "pwsh",
+      "args": ["-File", "${workspaceFolder}/core/main.ps1"],
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "C/C++: Compilar con Clang (Estándar OS/Systems)",
+      "command": "clang++",
+      "args": [
+        "-std=c++20",
+        "${file}",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}.out",
+        "-Wall",
+        "-Wextra",
+        "-pedantic"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "type": "shell",
+      "label": "Rust: Compilar Proyecto (Cargo)",
+      "command": "cargo",
+      "args": ["build"],
+      "group": "build",
+      "problemMatcher": ["$rustc"]
+    },
+    {
+      "type": "shell",
+      "label": "Web/Node: Instalar Dependencias",
+      "command": "npm",
+      "args": ["install"],
+      "group": "none",
+      "problemMatcher": []
+    }
+  ]
+}

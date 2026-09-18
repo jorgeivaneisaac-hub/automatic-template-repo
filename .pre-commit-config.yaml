@@ -1,0 +1,85 @@
+# ==============================================================================
+# CONFIGURACIÓN GLOBAL DE PRE-COMMIT (MULTI-LENGUAJE Y MULTIPROYECTO)
+# ==============================================================================
+repos:
+  # ----------------------------------------------------------------------------
+  # 1. GANCHOS UNIVERSALES DE LIMPIEZA Y SEGURIDAD
+  # ----------------------------------------------------------------------------
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+      - id: check-merge-conflict
+      - id: detect-private-key
+
+  # ----------------------------------------------------------------------------
+  # 2. C / C++ (Clang-Format & Clang-Tidy)
+  # ----------------------------------------------------------------------------
+  - repo: https://github.com/pocc/pre-commit-hooks
+    rev: v1.3.5
+    hooks:
+      - id: clang-format
+        args: [--style=file]
+      - id: clang-tidy
+        args: [--config-file=.clang-tidy]
+
+  # ----------------------------------------------------------------------------
+  # 3. RUST (Cargo fmt y Clippy - Sistema Local)
+  # ----------------------------------------------------------------------------
+  - repo: local
+    hooks:
+      - id: cargo-fmt
+        name: cargo fmt
+        entry: cargo fmt -- --check
+        language: system
+        types: [rust]
+      - id: clippy
+        name: clippy
+        entry: cargo clippy -- -D warnings
+        language: system
+        types: [rust]
+        pass_filenames: false
+
+  # ----------------------------------------------------------------------------
+  # 4. JAVASCRIPT / YAML / JSON (Prettier y ESLint)
+  # ----------------------------------------------------------------------------
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.1.0
+    hooks:
+      - id: prettier
+        types_or: [javascript, json, yaml, markdown]
+
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v9.0.0
+    hooks:
+      - id: eslint
+        files: \.[jt]sx?$
+        types: [file]
+
+  # ----------------------------------------------------------------------------
+  # 5. PYTHON (Ruff)
+  # ----------------------------------------------------------------------------
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.0
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  # ----------------------------------------------------------------------------
+  # 6. POWERSHELL (PSScriptAnalyzer - Sistema Local)
+  # ----------------------------------------------------------------------------
+  - repo: local
+    hooks:
+      - id: psscriptanalyzer
+        name: PSScriptAnalyzer
+        entry: pwsh -Command "Invoke-ScriptAnalyzer -Path . -Settings ./PSScriptAnalyzerSettings.psd1 -Recurse -Severity @('Error', 'Warning')"
+        language: system
+        types: [powershell]
+        pass_filenames: false

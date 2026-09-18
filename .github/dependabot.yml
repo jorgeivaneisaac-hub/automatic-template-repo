@@ -1,0 +1,119 @@
+# ==============================================================================
+# CONFIGURACIÓN GLOBAL DE DEPENDABOT
+# ==============================================================================
+version: 2
+updates:
+  # ----------------------------------------------------------------------------
+  # 1. GITHUB ACTIONS (CI/CD)
+  # ----------------------------------------------------------------------------
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "America/Mexico_City"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "ci/cd"
+    commit-message:
+      prefix: "ci"
+      prefix-development: "ci"
+      include: "scope"
+
+  # ----------------------------------------------------------------------------
+  # 2. RUST (Cargo)
+  # ----------------------------------------------------------------------------
+  - package-ecosystem: "cargo"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:30"
+      timezone: "America/Mexico_City"
+    open-pull-requests-limit: 10
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "production"
+    labels:
+      - "dependencies"
+      - "rust"
+    commit-message:
+      prefix: "deps(rust)"
+      include: "scope"
+
+  # ----------------------------------------------------------------------------
+  # 3. NODE.JS / JAVASCRIPT (npm)
+  # ----------------------------------------------------------------------------
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "04:00"
+      timezone: "America/Mexico_City"
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "webpack"
+        update-types: ["version-update:semver-major"]
+    labels:
+      - "dependencies"
+      - "javascript"
+    commit-message:
+      prefix: "deps(npm)"
+      include: "scope"
+
+  # ----------------------------------------------------------------------------
+  # 4. PYTHON (pip)
+  # ----------------------------------------------------------------------------
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "04:30"
+      timezone: "America/Mexico_City"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "deps(python)"
+      include: "scope"
+
+  # ----------------------------------------------------------------------------
+  # 5. DOCKER
+  # ----------------------------------------------------------------------------
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+      time: "04:00"
+      timezone: "America/Mexico_City"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "deps(docker)"
+      include: "scope"
+
+  # ----------------------------------------------------------------------------
+  # 6. C / C++ (vcpkg)
+  # ----------------------------------------------------------------------------
+  - package-ecosystem: "vcpkg"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+      time: "04:30"
+      timezone: "America/Mexico_City"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "c++"
+    commit-message:
+      prefix: "deps(cpp)"
+      include: "scope"

@@ -1,0 +1,6 @@
+test:ruby:
+  stage: test
+  image: ruby:3.2-alpine
+  script:
+    - bundle install
+    - bundle exec rspec || ruby test/*.rb

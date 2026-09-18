@@ -1,0 +1,5 @@
+lint:global:
+  stage: validate
+  image: alpine:latest
+  script:
+    - echo "Validando estructura general del repositorio y formato base..."

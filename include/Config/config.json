@@ -1,0 +1,113 @@
+{
+  "lenguajes": {
+    "c": {
+      "extensiones": [".c", ".h"],
+      "carpetas": ["src", "include", "core", "build", "bin", "docs", ".vscode"],
+      "files_obligatory": {
+        "core/main.c": "/**\n * @file main.c\n * @brief Archivo para la prueba de compilación\n */\n#include <stdio.h>\n\nint main(void) {\n    printf(\"hello world!\");\n    return 0;\n}\n"
+      },
+      "config": {
+        "CMakeLists.txt": "",
+        ".clang-tidy": "",
+        ".clangd": "",
+        ".clang-format": "",
+        "Makefile": "",
+        ".editorconfig": ""
+      }
+    },
+    "cpp": {
+      "extensiones": [".cpp", ".hpp", ".cc", ".h"],
+      "carpetas": ["src", "include", "core", "build", "bin", "docs"],
+      "files_obligatory": {
+        "core/main.cpp": "/**\n * @file main.cpp\n * @brief Archivo para la prueba de compilación\n */\n#include <iostream>\n\nint main() {\n    std::cout << \"hello world!\" << std::endl;\n    return 0;\n}\n"
+      },
+      "config": {
+        "CMakeLists.txt": "",
+        ".clang-tidy": ""
+      }
+    },
+    "rust": {
+      "extensiones": [".rs"],
+      "carpetas": ["src", "tests"],
+      "files_obligatory": {
+        "src/main.rs": "fn main() {\n    println!(\"hello world!\");\n}\n"
+      },
+      "config": {
+        "Cargo.toml": ""
+      }
+    },
+    "java": {
+      "extensiones": [".java"],
+      "carpetas": ["src/main/java", "src/test/java"],
+      "files_obligatory": {
+        "src/main/java/Main.java": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"hello world!\");\n    }\n}\n"
+      },
+      "config": {
+        "pom.xml": ""
+      }
+    },
+    "python": {
+      "extensiones": [".py"],
+      "carpetas": ["src", "tests"],
+      "files_obligatory": {
+        "src/main.py": "def main():\n    print(\"hello world!\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+      },
+      "config": {
+        "requirements.txt": "",
+        "pyproject.toml": ""
+      }
+    },
+    "ruby": {
+      "extensiones": [".rb"],
+      "carpetas": ["lib", "spec"],
+      "files_obligatory": {
+        "lib/main.rb": "puts 'hello world!'\n"
+      },
+      "config": {
+        "Gemfile": ""
+      }
+    },
+    "js": {
+      "extensiones": [".js", ".mjs", ".cjs"],
+      "carpetas": ["src"],
+      "files_obligatory": {
+        "src/index.js": "console.log('hello world!');\n"
+      },
+      "config": {
+        "package.json": ""
+      }
+    },
+    "ts": {
+      "extensiones": [".ts"],
+      "carpetas": ["src"],
+      "files_obligatory": {
+        "src/index.ts": "console.log('hello world!');\n"
+      },
+      "config": {
+        "package.json": "",
+        "tsconfig.json": ""
+      }
+    },
+    "web": {
+      "extensiones": [".html", ".htm", ".xml", ".css", ".scss", ".js"],
+      "carpetas": ["public", "src/assets", "src/js"],
+      "files_obligatory": {
+        "public/index.html": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Proyecto</title>\n</head>\n<body>\n  <h1>hello world!</h1>\n</body>\n</html>\n"
+      },
+      "config": {}
+    },
+    "web-sql": {
+      "extensiones": [".html", ".css", ".ts", ".sql", ".yaml", ".yml", ".json"],
+      "carpetas": ["src/components", "src/database", "config"],
+      "files_obligatory": {},
+      "config": {}
+    },
+    "multi": {
+      "descripcion": "Estructura agnóstica para proyectos mixtos o sistemas operativos",
+      "extensiones": [],
+      "carpetas": ["core", "scripts", "include", "docs"],
+      "files_obligatory": {},
+      "config": {}
+    }
+  }
+}

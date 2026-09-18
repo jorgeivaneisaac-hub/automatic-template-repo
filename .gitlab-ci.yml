@@ -1,0 +1,53 @@
+# ==============================================================================
+# ORQUESTADOR MAESTRO - GITLAB CI/CD (The One Ring to Rule Them All)
+# ==============================================================================
+
+stages:
+  - validate
+  - test
+  - security
+
+include:
+  # Canalización universal de validación base y lints globales
+  - local: ".gitlab/ci/base-lint.yml"
+
+  # Canalizaciones modulares por tecnología (se disparan condicionalmente)
+  - local: ".gitlab/ci/rust-ci.yml"
+    rules:
+      - if: "$CI_COMMIT_BRANCH"
+        exists:
+          - "Cargo.toml"
+
+  - local: ".gitlab/ci/node-ci.yml"
+    rules:
+      - if: "$CI_COMMIT_BRANCH"
+        exists:
+          - "package.json"
+
+  - local: ".gitlab/ci/python-ci.yml"
+    rules:
+      - if: "$CI_COMMIT_BRANCH"
+        exists:
+          - "requirements.txt"
+          - "pyproject.toml"
+          - "setup.py"
+
+  - local: ".gitlab/ci/cpp-ci.yml"
+    rules:
+      - if: "$CI_COMMIT_BRANCH"
+        exists:
+          - "CMakeLists.txt"
+          - "vcpkg.json"
+          - "Makefile"
+
+  - local: ".gitlab/ci/powershell-ci.yml"
+    rules:
+      - if: "$CI_COMMIT_BRANCH"
+        exists:
+          - "**/*.ps1"
+
+  - local: ".gitlab/ci/ruby-ci.yml"
+    rules:
+      - if: "$CI_COMMIT_BRANCH"
+        exists:
+          - "Gemfile"
