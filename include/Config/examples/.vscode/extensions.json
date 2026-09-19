@@ -1,0 +1,26 @@
+{
+  "recommendations": [
+    "ms-vscode.powershell",
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    "ms-vscode.cpptools",
+    "ms-vscode.cpptools-extension-pack",
+    "llvm-vs-code-extensions.vscode-clangd",
+    "twxs.cmake",
+    "ms-vscode.cmake-tools",
+    "rust-lang.rust-analyzer",
+    "tamasfe.even-better-toml",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "rebornix.ruby",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "formulahendry.auto-rename-tag",
+    "formulahendry.auto-close-tag",
+    "cweijan.vscode-postgresql-client2",
+    "editorconfig.editorconfig",
+    "redhat.vscode-yaml",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}

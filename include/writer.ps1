@@ -96,14 +96,14 @@ class Generador_Proyects {
             $langData = $configs.lenguajes.$language
 
             # 1. CREACIÓN DE CARPETAS EN PARALELO (.NET)
+            # 1. CREACIÓN DE CARPETAS EN PARALELO (PowerShell 7+)
             if ($langData.carpetas) {
-                [System.Threading.Tasks.Parallel]::ForEach($langData.carpetas, [Action[string]] {
-                        param([string]$carpeta)
-                        $dirCompleta = [System.IO.Path]::Combine($rutaProyecto, $carpeta)
-                        if (-not [System.IO.Directory]::Exists($dirCompleta)) {
-                            [System.IO.Directory]::CreateDirectory($dirCompleta) | Out-Null
-                        }
-                    })
+                $langData.carpetas | ForEach-Object -Parallel {
+                    $dirCompleta = [System.IO.Path]::Combine($using:rutaProyecto, $_)
+                    if (-not [System.IO.Directory]::Exists($dirCompleta)) {
+                        [void][System.IO.Directory]::CreateDirectory($dirCompleta)
+                    }
+                }
             }
 
             # 2. PROCESAMIENTO HÍBRIDO DE ARCHIVOS OBLIGATORIOS (.NET)
