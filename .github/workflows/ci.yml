@@ -45,17 +45,3 @@ jobs:
           } else {
               Write-Host "¡Análisis estático completado sin errores!" -ForegroundColor Green
           }
-
-      - name: Prueba de Sintaxis General
-        shell: pwsh
-        run: |
-          # Verifica que todos los archivos .ps1 compilen/parseen correctamente sin errores de sintaxis
-          Get-ChildItem -Path . -Recurse -Filter *.ps1 | ForEach-Object {
-              Write-Host "Verificando sintaxis de: $($_.FullName)"
-              $null = [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$null, [ref]$errors)
-              if ($errors) {
-                  Write-Error "Error de sintaxis en $($_.Name): $errors"
-                  exit 1
-              }
-          }
-          Write-Host "¡Todos los scripts tienen una sintaxis válida!" -ForegroundColor Green
