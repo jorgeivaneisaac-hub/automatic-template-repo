@@ -73,5 +73,11 @@
     "**/node_modules": true,
     "**/dist": true,
     "**/.changes": true
+  },
+  "material-icon-theme.folders.associations": {
+    "OPENAI": "robot"
+  },
+  "material-icon-theme.files.associations": {
+    "CHAT_GPT.md": "robot"
   }
 }

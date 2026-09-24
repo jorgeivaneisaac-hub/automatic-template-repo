@@ -40,32 +40,35 @@ class Generador_Proyects {
     }
 
     # CORREGIDO: Copiador recursivo de directorios completos usando clases de .NET
+    # Copiador recursivo de directorios completos (PowerShell 7+)
     [void]copy_dir([string]$RutaOrigen, [string]$RutaDestino, [bool]$Overwrite) {
         if (-not [System.IO.Directory]::Exists($RutaOrigen)) { return }
 
         # Si el destino no existe, lo creamos
         if (-not [System.IO.Directory]::Exists($RutaDestino)) {
-            [System.IO.Directory]::CreateDirectory($RutaDestino) | Out-Null
+            [void][System.IO.Directory]::CreateDirectory($RutaDestino)
         }
 
         # Indexamos todos los archivos recursivamente
         $archivos = [System.IO.Directory]::EnumerateFiles($RutaOrigen, "*", [System.IO.SearchOption]::AllDirectories)
 
-        # Transferencia multihilo paralela de .NET
-        [System.Threading.Tasks.Parallel]::ForEach($archivos, [Action[string]] {
-                param([string]$archivo)
+        # Procesamiento en paralelo usando ForEach-Object -Parallel
+        $archivos | ForEach-Object -Parallel {
+            $origenBase = $using:RutaOrigen
+            $destinoBase = $using:RutaDestino
+            $sobreescribir = $using:Overwrite
 
-                # Replicamos la estructura del árbol de carpetas
-                $subRuta = $archivo.Substring($RutaOrigen.Length).TrimStart([System.IO.Path]::DirectorySeparatorChar)
-                $destinoFinal = [System.IO.Path]::Combine($RutaDestino, $subRuta)
+            # Replicamos la estructura del árbol de carpetas
+            $subRuta = $_.Substring($origenBase.Length).TrimStart([System.IO.Path]::DirectorySeparatorChar)
+            $destinoFinal = [System.IO.Path]::Combine($destinoBase, $subRuta)
 
-                $carpetaDestino = [System.IO.Path]::GetDirectoryName($destinoFinal)
-                if (-not [System.IO.Directory]::Exists($carpetaDestino)) {
-                    [System.IO.Directory]::CreateDirectory($carpetaDestino) | Out-Null
-                }
+            $carpetaDestino = [System.IO.Path]::GetDirectoryName($destinoFinal)
+            if (-not [System.IO.Directory]::Exists($carpetaDestino)) {
+                [void][System.IO.Directory]::CreateDirectory($carpetaDestino)
+            }
 
-                [System.IO.File]::Copy($archivo, $destinoFinal, $Overwrite)
-            })
+            [System.IO.File]::Copy($_, $destinoFinal, $sobreescribir)
+        }
     }
 
     # Método auxiliar optimizado con .NET
