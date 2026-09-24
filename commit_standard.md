@@ -66,6 +66,10 @@ ci(gitlab): update pipeline runner dependencies
 Tareas rutinarias de mantenimiento o configuración
 chore(gitignore): add rules for build artifacts
 
+**global**
+Se abarca mucho en un commit
+global(): se cambio todo
+
 ## Resumen
 
 | Tipo         | Descripción                                              | Ejemplo                                                     |
@@ -79,3 +83,4 @@ chore(gitignore): add rules for build artifacts
 | **style**    | Formato, puntos y comas, espacios (sin cambio de lógica) | `style(tracker): format code according to C++20 guidelines` |
 | **ci**       | Cambios en scripts o archivos de integración continua    | `ci(gitlab): update pipeline runner dependencies`           |
 | **chore**    | Tareas rutinarias de mantenimiento o configuración       | `chore(gitignore): add rules for build artifacts`           |
+| **global**   | Muchos cambios y no se puede especificar                 | `global(): add much files`                                  |

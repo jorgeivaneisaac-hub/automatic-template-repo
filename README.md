@@ -48,4 +48,4 @@ Plantilla de ingeniería de software modular y lista para producción, diseñada
 
 ## LICENCIA
 
-Este proyecto se distribuye bajo los términos establecidos en el repositorio. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto se distribuye bajo los términos establecidos en el repositorio. Consulta el archivo [LICENSE](LICENSE.txt) para más detalles.

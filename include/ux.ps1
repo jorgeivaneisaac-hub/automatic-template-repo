@@ -34,9 +34,14 @@ class TUI {
         $this.ColorTema = [TUI_Colors]::CYAN
     }
 
-    [string]question([string]$mensaje) {
+    [string]question_bool([string]$mensaje, [string]$answer = "s") {
         $prefijo = "$([TUI_Styles]::BOLD)$($this.ColorTema)? $([TUI_Colors]::RESET)"
-        return Read-Host "$prefijo $mensaje"
+        $respuesta = Read-Host "$prefijo $mensaje (s/n)"
+
+        if ($respuesta.Trim() -eq $answer) {
+            return $respuesta
+        }
+        return "Error: la respuesta ingresada no es válida"
     }
 
     [void]mark_fail([string]$mensaje) {
@@ -54,4 +59,5 @@ class TUI {
     [void]log([string]$mensaje) {
         Write-Host "$($this.ColorTema)$mensaje$([TUI_Colors]::RESET)"
     }
+
 }
