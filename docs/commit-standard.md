@@ -8,10 +8,10 @@ Esta guía establece el estándar obligatorio de mensajes de commits y el proced
 
 ### Reglas Generales
 
-- **Sin emojis:** Queda estrictamente prohibido el uso de emojis en los mensajes de commit.
-- **Modo imperativo:** Usar verbos en presente imperativo (ej. `add`, `fix`, `refactor`, `remove`).
-- **Conciso:** La primera línea no debe superar los 50-72 caracteres.
-- **Estructura clara:** Tipo, alcance opcional y descripción directa.
+-   **Sin emojis:** Queda estrictamente prohibido el uso de emojis en los mensajes de commit.
+-   **Modo imperativo:** Usar verbos en presente imperativo (ej. `add`, `fix`, `refactor`, `remove`).
+-   **Conciso:** La primera línea no debe superar los 50-72 caracteres.
+-   **Estructura clara:** Tipo, alcance opcional y descripción directa.
 
 ### Estructura Básica
 

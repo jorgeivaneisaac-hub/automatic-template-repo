@@ -38,123 +38,18 @@ de planeación supera las 10 páginas.
 
 ### Lenguaje
 
-PowerShell
-
 ### **Regla de oro nunca**:
 
     En caso de que olvides la estructura que se te presenta a continuacion y la configuración del sistema solicita
         "favor de recordar la estructura"
 
-### Estructura del repositorio "Template":
+### Estructura del repositorio "":
 
 **Todo desde aquí hasta el final de el archivo es en base a la raiz y en orden de anidamineto**
 
-```tx
+```txt
 
-├── .changes
-├── .github
-│   ├── workflows
-│   │   └── ci.yml
-│   ├── copilot-instructions.md
-│   └── dependabot.yml
-├── .gitlab
-│   ├── ci
-│   │   ├── base-lint.yml
-│   │   ├── cpp-ci.yml
-│   │   ├── node-ci.yml
-│   │   ├── powershell-ci.yml
-│   │   ├── python-ci.yml
-│   │   ├── ruby-ci.yml
-│   │   └── rust-ci.yml
-│   └── issue_templates
-├── .vscode
-│   ├── extensions.json
-│   ├── settings.json
-│   └── tasks.json
-├── AGENTS
-│   ├── CLAUDE
-│   │   └── CLAUDE.md
-│   ├── GEMINI
-│   │   └── GEMINI.md
-│   └── OPENAI
-│       └── CHAT_GPT.md
-├── core
-│   └── main.ps1
-├── include
-│   ├── Config
-│   │   ├── agents-config
-│   │   │   └── examples
-│   │   │       ├── CLAUDE
-│   │   │       │   └── CLAUDE.md
-│   │   │       ├── GEMINI
-│   │   │       │   └── GEMINI.md
-│   │   │       └── OPENAI
-│   │   │           └── CHAT_GPT.md
-│   │   ├── changes-config
-│   │   │   └── examples
-│   │   │       ├── .changes
-│   │   │       ├── scripts
-│   │   │       │   ├── docs
-│   │   │       │   │   └── commands.md
-│   │   │       │   └── src
-│   │   │       │       └── changelog-manager.ps1
-│   │   │       └── CHANGELOG.md
-│   │   ├── git-config
-│   │   │   ├── github
-│   │   │   │   └── examples
-│   │   │   │       ├── workflows
-│   │   │   │       │   └── ci.yml
-│   │   │   │       ├── copilot-instructions.md
-│   │   │   │       └── dependabot.yml
-│   │   │   ├── gitlab
-│   │   │   │   └── examples
-│   │   │   │       └── ci
-│   │   │   │           ├── base-lint.yml
-│   │   │   │           ├── cpp-ci.yml
-│   │   │   │           ├── node-ci.yml
-│   │   │   │           ├── powershell-ci.yml
-│   │   │   │           ├── python-ci.yml
-│   │   │   │           ├── ruby-ci.yml
-│   │   │   │           └── rust-ci.yml
-│   │   │   ├── .gitattributes.example
-│   │   │   ├── .gitignore.example
-│   │   │   ├── .pre-commit-config.example.yaml
-│   │   │   └── PULL_REQUEST_TEMPLATE.example.md
-│   │   ├── governance-config
-│   │   │   └── examples
-│   │   │       ├── CODE_OF_CONDUCT.md
-│   │   │       └── SECURITY.md
-│   │   └── config.json
-│   ├── LICENSES
-│   │   └── examples
-│   │       ├── GNU-GPLv3.txt
-│   │       └── MIT-LICENSE.txt
-│   ├── ux.ps1
-│   └── writer.ps1
-├── RELASES
-│   ├── RAR
-│   │   └── Template.rar
-│   └── ZIP
-│       └── Template.zip
-├── scripts
-│   ├── docs
-│   │   └── commands.md
-│   └── src
-│       └── changelog-manager.ps1
-├── .clang-tidy
-├── .gitattributes
-├── .gitignore
-├── .gitlab-ci.yml
-├── .pre-commit-config.yaml
-├── AGENTS.md
-├── CHANGELOG.md
-├── CODE_OF_CONDUCT.md
-├── docs/commit-standard.md
-├── LICENSE.txt
-├── PSScriptAnalyzerSettings.psd1
-├── PULL_REQUEST_TEMPLATE.md
-├── README.md
-└── SECURITY.md
+
 
 ```
 
@@ -201,15 +96,6 @@ PowerShell
 4. **`OPENAI/CHAT_GPT.md`** — Contexto y directrices para los modelos de OpenAI.
 
 #### Código
-
-1. **`core/main.ps1`** — Script principal de PowerShell (punto de entrada del sistema).
-2. **`include/`**
-
--   `LICENSES/examples/`
-    -   `MIT.txt`
-    -   `GNU-GPLv3`
--   `ux.ps1`
--   `writer.ps1`
 
 #### Configuración e Infraestructura:
 
@@ -1447,12 +1333,6 @@ elseif ($Action -eq "generate") {
 ```
 
 #### Código
-
-1. core/main.ps1:
-
-    ```ps1
-
-    ```
 
 ## Respuesta
 

@@ -1,4 +1,4 @@
-. (Join-Path $PSScriptRoot "ux.ps1")
+﻿. (Join-Path $PSScriptRoot "ux.ps1")
 
 <#
 .SYNOPSIS
@@ -32,9 +32,9 @@ class Generador_Proyects {
 
         # Inicialización de tus constantes de rutas (Apunta a tus carpetas de origen)
         # Usar Join-Path / Combine en lugar de concatenar cadenas con \
-        $this.LICENSE_MIT = [System.IO.Path]::Combine($PSScriptRoot, "LICENSES", "examples", "MIT-LICENSE.txt")
-        $this.LICENSE_GPLv3 = [System.IO.Path]::Combine($PSScriptRoot, "LICENSES", "examples", "GNU-GPLv3.txt")
-        $this.CODE_OF_CONDUCT = [System.IO.Path]::Combine($PSScriptRoot, "Config", "gobernanza-config", "examples", "CODE_OF_CONDUCT.md")
+        $this.LICENSE_MIT = [System.IO.Path]::Combine($PSScriptRoot, "licenses", "examples", "MIT-LICENSE.txt")
+        $this.LICENSE_GPLv3 = [System.IO.Path]::Combine($PSScriptRoot, "licenses", "examples", "GNU-GPLv3.txt")
+        $this.CODE_OF_CONDUCT = [System.IO.Path]::Combine($PSScriptRoot, "config", "governance-config", "examples", "CODE_OF_CONDUCT.md")
     }
 
     # Copia un archivo individual a velocidad .NET
@@ -87,7 +87,7 @@ class Generador_Proyects {
     }
 
     [void]create_struct([string]$language) {
-        $file_languages = [System.IO.Path]::Combine($PSScriptRoot, "Config", "config.json")#[System.IO.Path]::Combine($PSScriptRoot, "Config\config.json")
+        $file_languages = [System.IO.Path]::Combine($PSScriptRoot, "config", "config.json")#[System.IO.Path]::Combine($PSScriptRoot, "Config\config.json")
 
         if (-not [System.IO.File]::Exists($file_languages)) {
             Write-Warning "No se encontró el archivo de configuración en: $file_languages"

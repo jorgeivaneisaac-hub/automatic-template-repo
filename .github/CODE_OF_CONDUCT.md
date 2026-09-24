@@ -10,19 +10,19 @@ Nos comprometemos a actuar e interactuar de maneras que contribuyan a una comuni
 
 Ejemplos de comportamiento que contribuyen a crear un ambiente positivo incluyen:
 
-- Demostrar empatía y amabilidad hacia otras personas.
-- Respetar las diferentes opiniones, puntos de vista y experiencias.
-- Dar y aceptar retroalimentación constructiva de manera elegante.
-- Aceptar la responsabilidad y disculparse ante los afectados por nuestros errores, aprendiendo de la experiencia.
-- Enfocarse en lo que es mejor no solo para nosotros como individuos, sino para la comunidad en general.
+-   Demostrar empatía y amabilidad hacia otras personas.
+-   Respetar las diferentes opiniones, puntos de vista y experiencias.
+-   Dar y aceptar retroalimentación constructiva de manera elegante.
+-   Aceptar la responsabilidad y disculparse ante los afectados por nuestros errores, aprendiendo de la experiencia.
+-   Enfocarse en lo que es mejor no solo para nosotros como individuos, sino para la comunidad en general.
 
 Ejemplos de comportamiento inaceptable incluyen:
 
-- El uso de lenguaje o imágenes sexualizadas, así como atención o avances sexuales de cualquier tipo.
-- Comentarios trolling, insultantes o derrogatorios, y ataques personales o políticos.
-- El acoso público o privado.
-- La publicación de información privada de otros (como direcciones físicas o de correo electrónico) sin su autorización explícita.
-- Cualquier otra conducta que pueda considerarse razonablemente inapropiada en un entorno profesional y de colaboración técnica.
+-   El uso de lenguaje o imágenes sexualizadas, así como atención o avances sexuales de cualquier tipo.
+-   Comentarios trolling, insultantes o derrogatorios, y ataques personales o políticos.
+-   El acoso público o privado.
+-   La publicación de información privada de otros (como direcciones físicas o de correo electrónico) sin su autorización explícita.
+-   Cualquier otra conducta que pueda considerarse razonablemente inapropiada en un entorno profesional y de colaboración técnica.
 
 ## Ámbito de Aplicación
 

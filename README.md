@@ -19,32 +19,32 @@ Plantilla de ingeniería de software modular y lista para producción, diseñada
 
 ## Características Principales
 
-- Multi-Lenguaje y Multi-Proyecto: Soporte preconfigurado para **Rust, C/C++, Python, JavaScript/TypeScript, Ruby y PowerShell**.
+-   Multi-Lenguaje y Multi-Proyecto: Soporte preconfigurado para **Rust, C/C++, Python, JavaScript/TypeScript, Ruby y PowerShell**.
 
-- AI-Native Ready: Incluye contexto estructurado en la carpeta AGENTS/ para que los modelos de lenguaje interpreten las reglas del repositorio.
+-   AI-Native Ready: Incluye contexto estructurado en la carpeta AGENTS/ para que los modelos de lenguaje interpreten las reglas del repositorio.
 
-- Control de Calidad Automático: Validaciones mediante ganchos de pre-commit, análisis estático y linters integrados.
+-   Control de Calidad Automático: Validaciones mediante ganchos de pre-commit, análisis estático y linters integrados.
 
-- CI/CD Dinámico: Orquestadores en GitHub Actions y GitLab que detectan automáticamente las tecnologías presentes en el proyecto.
+-   CI/CD Dinámico: Orquestadores en GitHub Actions y GitLab que detectan automáticamente las tecnologías presentes en el proyecto.
 
-- Normalización Global: Saltos de línea estrictos (LF) y normalización de archivos mediante .gitattributes para prevenir conflictos multiplataforma
+-   Normalización Global: Saltos de línea estrictos (LF) y normalización de archivos mediante .gitattributes para prevenir conflictos multiplataforma
 
 ## Uso Rápido
 
 1. Utiliza este repositorio como plantilla base para tu nuevo proyecto.
 2. Configura las herramientas locales asegurando el uso de pre-commit:
-   ```bash
-   pre-commit install
-   ```
+    ```bash
+    pre-commit install
+    ```
 3. Registra tus cambios mediante el script de changelogs:
-   ```ps1
-   pwsh ./scripts/src/chanelog-manager.ps1 -Action add -Type feat -Message "Inicialización del proyecto"
-   ```
+    ```ps1
+    pwsh ./scripts/src/changelog-manager.ps1 -Action add -Type feat -Message "Inicialización del proyecto"
+    ```
 
 ## Gobernanza y Seguridad
 
-- **Código de Conducta**: Consulta las normas de convivencia en CODE_OF_CONDUCT.md.
-- **Seguridad**: Reporta vulnerabilidades siguiendo las pautas de SECURITY.md.
+-   **Código de Conducta**: Consulta las normas de convivencia en CODE_OF_CONDUCT.md.
+-   **Seguridad**: Reporta vulnerabilidades siguiendo las pautas de SECURITY.md.
 
 ## LICENCIA
 

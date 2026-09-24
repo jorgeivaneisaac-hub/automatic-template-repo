@@ -3,19 +3,19 @@
 **Registra un cambio:**
 
 ```ps1
-pwsh -File .\scripts\src\chanelog-manager.ps1 -Action add -Type "feat" -Message "Implementada la autenticación por token"
+pwsh -File .\scripts\src\changelog-manager.ps1 -Action add -Type "feat" -Message "Implementada la autenticación por token"
 ```
 
 **Registra un error o comportamiento inesperado**
 
 ```ps1
-pwsh -File .\scripts\src\chanelog-manager.ps1 -Action add -Type "fix" -Message "Solucionado el error de ruta en el módulo principal"
+pwsh -File .\scripts\src\changelog-manager.ps1 -Action add -Type "fix" -Message "Solucionado el error de ruta en el módulo principal"
 ```
 
 **Compila en un CHANELOG.md**
 
 ```ps1
-pwsh -File .\scripts\src\chanelog-manager.ps1 -Action generate
+pwsh -File .\scripts\src\changelog-manager.ps1 -Action generate
 ```
 
 **Hacer un Commit**

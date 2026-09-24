@@ -4,8 +4,8 @@ param(
 )
 
 # Importas la clase desde include
-. "$PSScriptRoot\..\include\writer.ps1"
-. "$PSScriptRoot\..\include\ux.ps1"
+. (Join-Path $PSScriptRoot '..' 'include' 'writer.ps1')
+. (Join-Path $PSScriptRoot '..' 'include' 'ux.ps1')
 
 
 # Instanciar la TUI con color Magenta por defecto
