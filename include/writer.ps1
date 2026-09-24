@@ -24,12 +24,17 @@ class Generador_Proyects {
 
         # .NET combina la ruta del escritorio de forma limpia
         $desktop = [Environment]::GetFolderPath("Desktop")
+        if ([string]::IsNullOrWhiteSpace($desktop)) {
+            # Si no hay escritorio (ej. CI/CD o Linux), usar el directorio actual
+            $desktop = Get-Location
+        }
         $this.RUTA_ABSOLUTA = [System.IO.Path]::Combine($desktop, $name_proyect)
 
         # Inicialización de tus constantes de rutas (Apunta a tus carpetas de origen)
-        $this.LICENSE_MIT = [System.IO.Path]::Combine($PSScriptRoot, "LICENSES\examples\MIT-LICENSE.txt")
-        $this.LICENSE_GPLv3 = [System.IO.Path]::Combine($PSScriptRoot, "LICENSES\examples\GNU-GPLv3.txt")
-        $this.CODE_OF_CONDUCT = [System.IO.Path]::Combine($PSScriptRoot, "Config\gobernanza-config\examples\CODE_OF_CONDUCT.md")
+        # Usar Join-Path / Combine en lugar de concatenar cadenas con \
+        $this.LICENSE_MIT = [System.IO.Path]::Combine($PSScriptRoot, "LICENSES", "examples", "MIT-LICENSE.txt")
+        $this.LICENSE_GPLv3 = [System.IO.Path]::Combine($PSScriptRoot, "LICENSES", "examples", "GNU-GPLv3.txt")
+        $this.CODE_OF_CONDUCT = [System.IO.Path]::Combine($PSScriptRoot, "Config", "gobernanza-config", "examples", "CODE_OF_CONDUCT.md")
     }
 
     # Copia un archivo individual a velocidad .NET
@@ -82,7 +87,7 @@ class Generador_Proyects {
     }
 
     [void]create_struct([string]$language) {
-        $file_languages = "C:\Users\Lenovo\Desktop\Template\include\Config\config.json"#[System.IO.Path]::Combine($PSScriptRoot, "Config\config.json")
+        $file_languages = [System.IO.Path]::Combine($PSScriptRoot, "Config", "config.json")#[System.IO.Path]::Combine($PSScriptRoot, "Config\config.json")
 
         if (-not [System.IO.File]::Exists($file_languages)) {
             Write-Warning "No se encontró el archivo de configuración en: $file_languages"
