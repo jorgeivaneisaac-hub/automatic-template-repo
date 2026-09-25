@@ -86,6 +86,19 @@ class Generador_Proyects {
         return $dir
     }
 
+    # Escribe un archivo creando su carpeta; no pisa uno existente.
+    # UTF-8 sin BOM para que package.json, tsconfig.json, etc. sean válidos.
+    [void]write_file([string]$RutaRelativa, [string]$Contenido) {
+        $rutaFinal = [System.IO.Path]::Combine($this.RUTA_ABSOLUTA, $RutaRelativa)
+        $carpeta = [System.IO.Path]::GetDirectoryName($rutaFinal)
+        if (-not [System.IO.Directory]::Exists($carpeta)) {
+            [void][System.IO.Directory]::CreateDirectory($carpeta)
+        }
+        if (-not [System.IO.File]::Exists($rutaFinal)) {
+            [System.IO.File]::WriteAllText($rutaFinal, $Contenido, [System.Text.UTF8Encoding]::new($false))
+        }
+    }
+
     [void]create_struct([string]$language) {
         $file_languages = [System.IO.Path]::Combine($PSScriptRoot, "config", "config.json")#[System.IO.Path]::Combine($PSScriptRoot, "Config\config.json")
 
@@ -114,46 +127,24 @@ class Generador_Proyects {
                 }
             }
 
-            # 2. PROCESAMIENTO HÍBRIDO DE ARCHIVOS OBLIGATORIOS (.NET)
+            # 2. ARCHIVOS OBLIGATORIOS
+            # Formatos soportados para cada entrada de files_obligatory:
+            #   "ruta": "contenido"          -> formato actual de config.json
+            #   "clave": [ "ruta1", ... ]    -> lista de rutas (se crean vacías)
+            #   "clave": { "ruta": "texto" } -> objeto anidado
             if ($langData.files_obligatory) {
-                $archivosObligatorios = $langData.files_obligatory.PSObject.Properties
+                foreach ($entrada in $langData.files_obligatory.PSObject.Properties) {
+                    $valor = $entrada.Value
 
-                foreach ($archivoProp in $archivosObligatorios) {
-                    $valorPropiedad = $archivoProp.Value
-
-                    # Caso A: Estructura Nueva (como tu C) -> Es un objeto anidado con Ruta y Código
-                    if ($valorPropiedad.PSObject.Properties.Name -and -not ($valorPropiedad -is [System.Array])) {
-                        $datosArchivo = $valorPropiedad.PSObject.Properties
-
-                        foreach ($propContenido in $datosArchivo) {
-                            $rutaRelativa = $propContenido.Name
-                            $contenidoBase = $propContenido.Value # Toma el string del array
-
-                            $rutaFinalArchivo = [System.IO.Path]::Combine($rutaProyecto, $rutaRelativa)
-                            $directorioContenedor = [System.IO.Path]::GetDirectoryName($rutaFinalArchivo)
-
-                            if (-not [System.IO.Directory]::Exists($directorioContenedor)) {
-                                [System.IO.Directory]::CreateDirectory($directorioContenedor) | Out-Null
-                            }
-
-                            if (-not [System.IO.File]::Exists($rutaFinalArchivo)) {
-                                [System.IO.File]::WriteAllText($rutaFinalArchivo, $contenidoBase, [System.Text.Encoding]::UTF8)
-                            }
-                        }
+                    if ($valor -is [string]) {
+                        $this.write_file($entrada.Name, $valor)
                     }
-                    # Caso B: Estructura Antigua (como tu C++) -> Es solo un array con la ruta relativa (crea archivo vacío)
-                    else {
-                        foreach ($rutaRelativa in $valorPropiedad) {
-                            $rutaFinalArchivo = [System.IO.Path]::Combine($rutaProyecto, $rutaRelativa)
-                            $directorioContenedor = [System.IO.Path]::GetDirectoryName($rutaFinalArchivo)
-
-                            if (-not [System.IO.Directory]::Exists($directorioContenedor)) {
-                                [System.IO.Directory]::CreateDirectory($directorioContenedor) | Out-Null
-                            }
-
-                            if (-not [System.IO.File]::Exists($rutaFinalArchivo)) {
-                                [System.IO.File]::Create($rutaFinalArchivo).Close()
-                            }
+                    elseif ($valor -is [System.Array]) {
+                        foreach ($ruta in $valor) { $this.write_file([string]$ruta, "") }
+                    }
+                    elseif ($valor -is [System.Management.Automation.PSCustomObject]) {
+                        foreach ($sub in $valor.PSObject.Properties) {
+                            $this.write_file($sub.Name, [string]$sub.Value)
                         }
                     }
                 }
